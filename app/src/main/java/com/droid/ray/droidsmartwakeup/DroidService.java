@@ -3,6 +3,7 @@ package com.droid.ray.droidsmartwakeup;
 import android.accessibilityservice.AccessibilityService;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -31,12 +32,15 @@ public class DroidService extends AccessibilityService implements SensorEventLis
     }
 
     @SuppressWarnings("deprecation")
-    private void turnOnScreen() {
+    private void TurnOnScreen() {
         Log.d(DroidCommon.TAG, DroidCommon.getLogTagWithMethod(new Throwable()));
         PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
-        PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP, "DroidNotification");
+        PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP | PowerManager.ON_AFTER_RELEASE, DroidCommon.TAG);
         try {
             wl.acquire();
+
+        } catch (Exception ex) {
+            Log.d(DroidCommon.TAG, DroidCommon.getLogTagWithMethod(new Throwable()) + " Erro: " + ex.getMessage());
         } finally {
             try {
                 if (wl.isHeld()) {
@@ -45,6 +49,18 @@ public class DroidService extends AccessibilityService implements SensorEventLis
             } catch (Exception ex) {
                 Log.d(DroidCommon.TAG, DroidCommon.getLogTagWithMethod(new Throwable()) + " Erro: " + ex.getMessage());
             }
+        }
+    }
+
+    private void ShowDroidBackground() {
+        try {
+            Intent dialogIntent = new Intent(this, DroidBackground.class);
+            dialogIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            dialogIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            dialogIntent.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
+            this.startActivity(dialogIntent);
+        } catch (Exception ex) {
+            Log.d(DroidCommon.TAG, DroidCommon.getLogTagWithMethod(new Throwable()) + " Erro: " + ex.getMessage());
         }
     }
 
@@ -81,8 +97,9 @@ public class DroidService extends AccessibilityService implements SensorEventLis
                 openSensorProximity = (event.values[0] == event.sensor.getMaximumRange());
                 if (openSensorProximity) {
                     if (DroidPreferences.GetBool(getBaseContext(), "openSensorProximity") == false) {
-                        turnOnScreen();
+                        ShowDroidBackground();
                         SetSensorProximity(false);
+                        TurnOnScreen();
                     }
                 }
                 DroidPreferences.SetBool(getBaseContext(), "openSensorProximity", openSensorProximity);

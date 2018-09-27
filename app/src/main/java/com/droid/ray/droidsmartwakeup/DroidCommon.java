@@ -1,12 +1,13 @@
 package com.droid.ray.droidsmartwakeup;
 
 import android.app.ActivityManager;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 /**
  * Created by Robson on 04/08/2017.
  */
 
-public class DroidCommon {
+public class DroidCommon{
 
     public static String TAG = "DroidSmartWakeup";
 

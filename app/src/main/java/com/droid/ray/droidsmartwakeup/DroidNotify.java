@@ -2,10 +2,12 @@ package com.droid.ray.droidsmartwakeup;
 
 import android.app.ActivityManager;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
+import android.provider.Settings;
 import android.util.Log;
 
 public class DroidNotify extends PreferenceActivity {
@@ -24,7 +26,7 @@ public class DroidNotify extends PreferenceActivity {
             service.setOnPreferenceClickListener(new OnPreferenceClickListener() {
                 public boolean onPreferenceClick(Preference preference) {
                     try {
-                        startActivity(new Intent(android.provider.Settings.ACTION_ACCESSIBILITY_SETTINGS));
+                        startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS));
                     } catch (Exception ex) {
                     }
                     return true;
@@ -52,7 +54,6 @@ public class DroidNotify extends PreferenceActivity {
             Log.d(DroidCommon.TAG, DroidCommon.getLogTagWithMethod(new Throwable()) + " Erro: " + ex.getMessage());
         }
     }
-
 
 
 }

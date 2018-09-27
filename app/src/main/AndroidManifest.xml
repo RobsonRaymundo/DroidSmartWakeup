@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.droid.ray.droidsmartwakeup">
 
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
@@ -14,10 +15,13 @@
         <activity android:name=".DroidNotify">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".DroidBackground"
+            android:theme="@style/AppThemeFull"
+            android:screenOrientation="portrait"/>
         <service
             android:name=".DroidService"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
