@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="@string/app_notification" >
+        <Preference
+            android:key="service"
+            android:title="@string/app_active"
+            android:summary="@string/app_deactive" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

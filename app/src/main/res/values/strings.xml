@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Smart Wakeup</string>
+    <string name="description">Liga a tela quando abrir a capa Smart View.</string>
+    <string name="app_active">Aplicativo ATIVADO</string>
+    <string name="app_deactive">Toque aqui para DESATIVAR</string>
+    <string name="app_inactive">Aplicativo DESATIVADO</string>
+    <string name="app_activate">Toque aqui para ATIVAR</string>
+    <string name="app_notification">Notificação</string>
+
+
+</resources>
