@@ -27,4 +27,13 @@ public class DroidCommon {
         StackTraceElement[] trace = stack.getStackTrace();
         return trace[0].getClassName() + "." + trace[0].getMethodName() + ":" + trace[0].getLineNumber();
     }
+
+    public static void TimeSleep(int time) {
+        try {
+            Log.d(DroidCommon.TAG, DroidCommon.getLogTagWithMethod(new Throwable()));
+            Thread.sleep(time);
+        } catch (Exception ex) {
+            Log.d(DroidCommon.TAG, DroidCommon.getLogTagWithMethod(new Throwable()) + " Erro: " + ex.getMessage());
+        }
+    }
 }

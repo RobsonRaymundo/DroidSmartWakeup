@@ -18,9 +18,9 @@ public class DroidScreenReceiver extends BroadcastReceiver {
             } else if (intent.getAction().equals(Intent.ACTION_SCREEN_ON)) {
                 screenOff = false;
             }
-            Intent i = new Intent(context, DroidService.class);
-            i.putExtra("screen_state", screenOff);
-            context.startService(i);
+          //  Intent i = new Intent(context, DroidService.class);
+          //  i.putExtra("screen_state", screenOff);
+          //  context.startService(i);
         } catch (Exception ex) {
             Log.d(DroidCommon.TAG, DroidCommon.getLogTagWithMethod(new Throwable()) + " Erro: " + ex.getMessage());
         }
