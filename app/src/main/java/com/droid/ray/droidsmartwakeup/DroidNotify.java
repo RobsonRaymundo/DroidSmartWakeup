@@ -1,23 +1,11 @@
 package com.droid.ray.droidsmartwakeup;
 
 import android.app.ActivityManager;
-import android.app.ActivityManager.RunningServiceInfo;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
-import android.preference.CheckBoxPreference;
 import android.preference.Preference;
-import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
-import android.preference.PreferenceCategory;
-import android.preference.PreferenceManager;
-import android.preference.PreferenceScreen;
-import android.text.format.DateFormat;
 import android.util.Log;
 
 public class DroidNotify extends PreferenceActivity {
@@ -52,7 +40,7 @@ public class DroidNotify extends PreferenceActivity {
         Log.d(DroidCommon.TAG, DroidCommon.getLogTagWithMethod(new Throwable()));
         super.onResume();
         try {
-            active = isMyServiceRunning();
+            active = DroidCommon.isMyServiceRunning((ActivityManager) getSystemService(ACTIVITY_SERVICE));
             if (active) {
                 service.setTitle(R.string.app_active);
                 service.setSummary(R.string.app_deactive);
@@ -66,20 +54,5 @@ public class DroidNotify extends PreferenceActivity {
     }
 
 
-    private boolean isMyServiceRunning() {
-        Log.d(DroidCommon.TAG, DroidCommon.getLogTagWithMethod(new Throwable()));
-        ActivityManager manager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
-        try {
 
-            for (RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
-
-                if (DroidService.class.getName().equals(service.service.getClassName())) {
-                    return true;
-                }
-            }
-        } catch (Exception ex) {
-            Log.d(DroidCommon.TAG, DroidCommon.getLogTagWithMethod(new Throwable()) + " Erro: " + ex.getMessage());
-        }
-        return false;
-    }
 }

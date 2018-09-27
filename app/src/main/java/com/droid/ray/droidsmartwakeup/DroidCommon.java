@@ -1,20 +1,7 @@
 package com.droid.ray.droidsmartwakeup;
 
-import android.appwidget.AppWidgetManager;
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.os.Vibrator;
-import android.preference.PreferenceManager;
-import android.text.format.DateFormat;
+import android.app.ActivityManager;
 import android.util.Log;
-import android.util.TypedValue;
-import android.widget.RemoteViews;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-
 /**
  * Created by Robson on 04/08/2017.
  */
@@ -35,5 +22,22 @@ public class DroidCommon {
         } catch (Exception ex) {
             Log.d(DroidCommon.TAG, DroidCommon.getLogTagWithMethod(new Throwable()) + " Erro: " + ex.getMessage());
         }
+    }
+
+    public static boolean isMyServiceRunning(ActivityManager activityManager) {
+        Log.d(DroidCommon.TAG, DroidCommon.getLogTagWithMethod(new Throwable()));
+        ActivityManager manager = activityManager;
+        try {
+
+            for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+
+                if (DroidService.class.getName().equals(service.service.getClassName())) {
+                    return true;
+                }
+            }
+        } catch (Exception ex) {
+            Log.d(DroidCommon.TAG, DroidCommon.getLogTagWithMethod(new Throwable()) + " Erro: " + ex.getMessage());
+        }
+        return false;
     }
 }

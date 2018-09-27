@@ -1,28 +1,15 @@
 package com.droid.ray.droidsmartwakeup;
 
 import android.accessibilityservice.AccessibilityService;
-import android.accessibilityservice.AccessibilityServiceInfo;
 import android.annotation.SuppressLint;
-import android.app.KeyguardManager;
-import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.media.AudioManager;
 import android.os.PowerManager;
-import android.preference.PreferenceManager;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
-
-import java.lang.reflect.Method;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 @SuppressLint("NewApi")
 public class DroidService extends AccessibilityService implements SensorEventListener {
